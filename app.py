@@ -54,26 +54,48 @@ class RegisterForm(Form):
 def register():
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
-        first_name = form.first_name.data
-        last_name = form.last_name.data
-        email = form.email.data
-        username = form.username.data
         password = sha256_crypt.encrypt(str(form.password.data))
 
+        users = mongo.db.users
+        existing_user = users.find_one({'username': request.form['username']})
 
+        if existing_user is None:
+            users.insert({'first_name': request.form['first_name'], 'last_name': request.form['last_name'], 'email': request.form['email'], 'username': request.form['username'], 'password': password})
+            session['username'] = request.form['username']
+            flash('You are now registered and can log in', 'success')
+            return redirect(url_for('login'))
 
-        flash('You are now registered and can log in', 'success')
+        flash('That username already exists!', 'danger')
 
-        return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
 # User login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    form = RegisterForm(request.form)
     if request.method == 'POST':
         # Get Form Fields
         username = request.form['username']
         password_candidate = request.form['password']
+
+        users = mongo.db.users
+        login_user = users.find_one({'username': request.form['username']})
+
+        if login_user > 0:
+            password = sha256_crypt.encrypt(str(form.password.data))
+
+            if sha256_crypt.verify(password_candidate, password):
+                session['logged_in'] = True
+                session['username'] = username
+
+                flash('You are now logged in', 'success')
+                return redirect(url_for('dashboard'))
+            else:
+                error = 'Invalid login'
+                return render_template('login.html', error=error)
+        else:
+            error = 'Username not found'
+            return render_template('login.html', error=error)
 
     return render_template('login.html')
 
@@ -108,10 +130,31 @@ def dashboard():
 class RecipeForm(Form):
     title = StringField('Title', [validators.Length(min=1, max=200)])
     chef = StringField('Chef', [validators.Length(min=4, max=100)])
+    reviews = IntegerField('Reviews')
+
+    total = IntegerField('Total')
+    prep = IntegerField('Prep')
+    cook = IntegerField('Cook')
+    inactive = IntegerField('Inactive')
+
     level = StringField('Level', [validators.Length(min=4, max=100)])
     servings = IntegerField('Servings')
-    reviews = IntegerField('Reviews')
-    total = IntegerField('Total')
+
+    calories = IntegerField('Calories')
+    total_fat = IntegerField('Total Fat')
+    saturated_fat = IntegerField('Saturated Fat')
+    cholesterol = IntegerField('Cholesterol')
+    sodium = IntegerField('Sodium')
+    carbohydrats = IntegerField('Carbohydrats')
+    diestary_fiber = IntegerField('Diestary Fiber')
+    protein = IntegerField('Protein')
+    sugar = IntegerField('Sugar')
+
+    ingredients = StringField('Ingredients', [validators.Length(min=4, max=1000)])
+
+    directions = StringField('Directions', [validators.Length(min=4, max=1000)])
+
+    categories = StringField('Categories', [validators.Length(min=4, max=1000)])
 
 # Add Recipe
 @app.route('/add_recipe', methods=['GET', 'POST'])
@@ -119,12 +162,34 @@ class RecipeForm(Form):
 def add_recipe():
     form = RecipeForm(request.form)
     if request.method == 'POST' and form.validate():
-        title = form.title.data
-        chef = form.chef.data
-        level = form.level.data
-        servings = form.servings.data
-        reviews = form.reviews.data
-        total = form.total.data
+
+        recipes = mongo.db.recipes
+        existing_recipe = recipes.find_one({'title': request.form['title']})
+
+        if existing_recipe is None:
+            recipes.insert({'title': request.form['title'],
+            'reviews': request.form['reviews'],
+            'chef': request.form['chef'],
+            'total': request.form['total'],
+            'prep': request.form['prep'],
+            'cook': request.form['cook'],
+            'inactive': request.form['inactive'],
+            'servings': request.form['servings'],
+            'level': request.form['level'],
+            'calories': request.form['calories'],
+            'total_fat': request.form['total_fat'],
+            'saturated_fat': request.form['saturated_fat'],
+            'cholesterol': request.form['cholesterol'],
+            'sodium': request.form['sodium'],
+            'carbohydrats': request.form['carbohydrats'],
+            'diestary_fiber': request.form['diestary_fiber'],
+            'protein': request.form['protein'],
+            'sugar': request.form['sugar'],
+            'ingredients': request.form['ingredients'],
+            'directions': request.form['directions'],
+            'categories': request.form['categories'],})
+
+        flash('Recipe Created', 'success')
 
         return redirect(url_for('dashboard'))
 

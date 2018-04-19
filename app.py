@@ -1,5 +1,6 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
 from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
 from wtforms import Form, StringField, IntegerField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
@@ -11,10 +12,8 @@ app.config['MONGO_DBNAME'] = 'recipesapp89'
 app.config['MONGO_URI'] = 'mongodb://lucas89:David2000@ds247439.mlab.com:47439/recipesapp89'
 
 
-# init MongoDB
+# Init MongoDB
 mongo = PyMongo(app)
-
-
 
 # Home
 @app.route('/')
@@ -29,13 +28,24 @@ def about():
 # Recipes
 @app.route('/recipes')
 def recipes():
-    return render_template('recipes.html')
+    recipes = mongo.db.recipes
+
+    find_recipes = mongo.db.recipes.find()
+
+    if find_recipes > 0:
+        return render_template('recipes.html', recipes=find_recipes)
+    else:
+        msg = 'No Recipes Found'
+        return render_template('recipes.html', msg=msg)
+    # return render_template('recipes.html')
 
 
 # Single Recipe
-@app.route('/recipe/<string:id>/')
-def recipe(id):
-    return render_template('recipe.html', recipe=recipe)
+@app.route('/recipes/<recipe_id>')
+def recipe(recipe_id):
+    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+
+    return render_template('recipe.html', recipe=the_recipe)
 
 #Register Form Class
 class RegisterForm(Form):
@@ -126,8 +136,6 @@ def dashboard():
     recipes = mongo.db.recipes
 
     find_recipes = mongo.db.recipes.find()
-
-    # return render_template('dashboard.html', recipes=find_recipes)
 
     if find_recipes > 0:
         return render_template('dashboard.html', recipes=find_recipes)

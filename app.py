@@ -122,9 +122,18 @@ def logout():
 @app.route('/dashboard')
 @is_logged_in
 def dashboard():
-    return render_template('dashboard.html')
 
+    recipes = mongo.db.recipes
 
+    find_recipes = mongo.db.recipes.find()
+
+    # return render_template('dashboard.html', recipes=find_recipes)
+
+    if find_recipes > 0:
+        return render_template('dashboard.html', recipes=find_recipes)
+    else:
+        msg = 'No Recipes Found'
+        return render_template('dashboard.html', msg=msg)
 
 # Recipe Form Class
 class RecipeForm(Form):
@@ -170,13 +179,15 @@ def add_recipe():
             recipes.insert({'title': request.form['title'],
             'reviews': request.form['reviews'],
             'chef': request.form['chef'],
-            'total': request.form['total'],
+
+            'time': {'total': request.form['total'],
             'prep': request.form['prep'],
             'cook': request.form['cook'],
-            'inactive': request.form['inactive'],
+            'inactive': request.form['inactive']},
+
             'servings': request.form['servings'],
             'level': request.form['level'],
-            'calories': request.form['calories'],
+            'nutrition': {'calories': request.form['calories'],
             'total_fat': request.form['total_fat'],
             'saturated_fat': request.form['saturated_fat'],
             'cholesterol': request.form['cholesterol'],
@@ -184,7 +195,9 @@ def add_recipe():
             'carbohydrats': request.form['carbohydrats'],
             'diestary_fiber': request.form['diestary_fiber'],
             'protein': request.form['protein'],
-            'sugar': request.form['sugar'],
+            'sugar': request.form['sugar']},
+
+
             'ingredients': request.form['ingredients'],
             'directions': request.form['directions'],
             'categories': request.form['categories'],})

@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Edit Recipe</h1>
+  {% from "includes/_formhelpers.html" import render_field %}
+
+  <form method="POST" action="">
+    <div class="form-group">
+      {{ render_field(form.title, class_="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ render_field(form.reviews, class_="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ render_field(form.chef, class_="form-control") }}
+    </div>
+
+    <div class="form-inline">
+      <div class="form-group">
+        {{ render_field(form.total, class_="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.prep, class_="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.cook, class_="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.inactive, class_="form-control") }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      {{ render_field(form.servings, class_="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ render_field(form.level, class_="form-control") }}
+    </div>
+
+    <div class="form-inline">
+      <div class="form-group">
+        {{ render_field(form.calories, class_="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.total_fat, class_="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.saturated_fat, class_="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.cholesterol, class_="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.sodium, class_="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.carbohydrats, class_="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.diestary_fiber, class_="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.protein, class_="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.sugar, class_="form-control") }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      {{ render_field(form.ingredients, class_="form-control") }}
+    </div>
+
+    <div class="form-group">
+      {{ render_field(form.directions, class_="form-control") }}
+    </div>
+
+    <div class="form-group">
+      {{ render_field(form.categories, class_="form-control") }}
+    </div>
+
+    <p>
+      <input class="btn btn-primary" type="submit" value="Submit" />
+    </p>
+  </form>
+{% endblock %}

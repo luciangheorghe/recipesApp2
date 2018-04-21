@@ -216,6 +216,107 @@ def add_recipe():
 
     return render_template('add_recipe.html', form=form)
 
+# Edit Recipe
+@app.route('/edit_recipe/<recipe_id>', methods=['GET', 'POST'])
+@is_logged_in
+def edit_recipe(recipe_id):
+    # Get recipe by id
+    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+
+    # Get the form
+    form = RecipeForm(request.form)
+
+    # Populate recipe form fields
+    form.title.data = the_recipe['title']
+    form.reviews.data = the_recipe['reviews']
+    form.chef.data = the_recipe['chef']
+
+    form.total.data = the_recipe['time']['total']
+    form.prep.data = the_recipe['time']['prep']
+    form.cook.data = the_recipe['time']['cook']
+    form.inactive.data = the_recipe['time']['inactive']
+
+    form.servings.data = the_recipe['servings']
+    form.level.data = the_recipe['level']
+
+    form.calories.data = the_recipe['nutrition']['calories']
+    form.total_fat.data = the_recipe['nutrition']['total_fat']
+    form.saturated_fat.data = the_recipe['nutrition']['saturated_fat']
+    form.cholesterol.data = the_recipe['nutrition']['cholesterol']
+    form.sodium.data = the_recipe['nutrition']['sodium']
+    form.carbohydrats.data = the_recipe['nutrition']['carbohydrats']
+    form.diestary_fiber.data = the_recipe['nutrition']['diestary_fiber']
+    form.protein.data = the_recipe['nutrition']['protein']
+    form.sugar.data = the_recipe['nutrition']['sugar']
+
+    form.ingredients.data = the_recipe['ingredients']
+    form.directions.data = the_recipe['directions']
+    form.categories.data = the_recipe['categories']
+
+    if request.method == 'POST' and form.validate():
+        title = request.form['title']
+        reviews = request.form['reviews']
+        chef = request.form['chef']
+
+        total = request.form['total']
+        prep = request.form['prep']
+        cook = request.form['cook']
+        inactive = request.form['inactive']
+
+        servings = request.form['servings']
+        level = request.form['level']
+
+        calories = request.form['calories']
+        total_fat = request.form['total_fat']
+        saturated_fat = request.form['saturated_fat']
+        cholesterol = request.form['cholesterol']
+        sodium = request.form['sodium']
+        carbohydrats = request.form['carbohydrats']
+        diestary_fiber = request.form['diestary_fiber']
+        protein = request.form['protein']
+        sugar = request.form['sugar']
+
+        ingredients = request.form['ingredients']
+        directions = request.form['directions']
+        categories = request.form['categories']
+
+        recipes = mongo.db.recipes
+
+        if the_recipe is not None:
+            recipes.update_one({"_id": ObjectId(recipe_id)}, {"$set": {'title': request.form['title'],
+            'reviews': request.form['reviews'],
+            'chef': request.form['chef'],
+
+            'time': {'total': request.form['total'],
+            'prep': request.form['prep'],
+            'cook': request.form['cook'],
+            'inactive': request.form['inactive']},
+
+            'servings': request.form['servings'],
+            'level': request.form['level'],
+
+            'nutrition': {'calories': request.form['calories'],
+            'total_fat': request.form['total_fat'],
+            'saturated_fat': request.form['saturated_fat'],
+            'cholesterol': request.form['cholesterol'],
+            'sodium': request.form['sodium'],
+            'carbohydrats': request.form['carbohydrats'],
+            'diestary_fiber': request.form['diestary_fiber'],
+            'protein': request.form['protein'],
+            'sugar': request.form['sugar']},
+
+            'ingredients': request.form['ingredients'],
+            'directions': request.form['directions'],
+            'categories': request.form['categories']
+            }})
+        else:
+            flash('not working', 'danger')
+
+        flash('Recipe Updated', 'success')
+
+        return redirect(url_for('dashboard'))
+
+    return render_template('edit_recipe.html', form=form)
 
 if __name__ == '__main__':
     app.secret_key='secret123'

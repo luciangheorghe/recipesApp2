@@ -318,6 +318,23 @@ def edit_recipe(recipe_id):
 
     return render_template('edit_recipe.html', form=form)
 
+# Delete Recipe
+@app.route('/delete_recipe/<recipe_id>', methods=['POST', 'DELETE'])
+@is_logged_in
+def delete_recipe(recipe_id):
+
+    recipes = mongo.db.recipes
+    del_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+
+    if request.method == 'POST':
+        recipes.delete_one({"_id": ObjectId(recipe_id)})
+    else:
+        flash('Not Working', 'danger')
+
+    flash('Recipe Deleted', 'success')
+
+    return redirect(url_for('dashboard'))
+
 if __name__ == '__main__':
     app.secret_key='secret123'
     app.run(debug=True)

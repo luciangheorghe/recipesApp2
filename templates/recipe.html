@@ -1,12 +1,23 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-
-  <h1>{{recipe.title}}</h1>
-  <small>Written by {{session['username']}} on {{recipe.created_date}}</small>
-  <hr />
-  <div>
-    {{recipe.chef}}
-    {{recipe.level}}
+  <div class="container">
+    <h1>{{recipe.title}}</h1>
+    <small>Written by {{session['username']}}</small>
+    <hr />
+    <div>
+      {{recipe.chef}}
+    </div>
+    <div>
+      {{recipe.level}}
+    </div>
+    <div>
+      {{recipe.ingredients}}
+    </div>
+    <hr />
+    <div>
+      {{recipe.directions}}
+    </div>
   </div>
+
 {% endblock %}

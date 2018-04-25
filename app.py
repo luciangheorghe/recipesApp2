@@ -1,7 +1,7 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from wtforms import Form, StringField, IntegerField, TextAreaField, PasswordField, validators
+from wtforms import Form, StringField, IntegerField, DecimalField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
 
@@ -158,18 +158,18 @@ class RecipeForm(Form):
     servings = IntegerField('Servings')
 
     calories = IntegerField('Calories')
-    total_fat = IntegerField('Total Fat')
-    saturated_fat = IntegerField('Saturated Fat')
-    cholesterol = IntegerField('Cholesterol')
-    sodium = IntegerField('Sodium')
-    carbohydrats = IntegerField('Carbohydrats')
-    diestary_fiber = IntegerField('Diestary Fiber')
-    protein = IntegerField('Protein')
-    sugar = IntegerField('Sugar')
+    total_fat = DecimalField('Total Fat')
+    saturated_fat = DecimalField('Saturated Fat')
+    cholesterol = DecimalField('Cholesterol')
+    sodium = DecimalField('Sodium')
+    carbohydrats = DecimalField('Carbohydrats')
+    diestary_fiber = DecimalField('Diestary Fiber')
+    protein = DecimalField('Protein')
+    sugar = DecimalField('Sugar')
 
     ingredients = StringField('Ingredients', [validators.Length(min=4, max=1000)])
 
-    directions = StringField('Directions', [validators.Length(min=4, max=1000)])
+    directions = StringField('Directions', [validators.Length(min=4, max=10000)])
 
     categories = StringField('Categories', [validators.Length(min=4, max=1000)])
 
@@ -322,7 +322,7 @@ def edit_recipe(recipe_id):
 @app.route('/delete_recipe/<recipe_id>', methods=['POST', 'DELETE'])
 @is_logged_in
 def delete_recipe(recipe_id):
-
+    # Get recipe by id
     recipes = mongo.db.recipes
     del_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
 

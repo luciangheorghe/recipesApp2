@@ -1,20 +1,80 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<div class="container">
+<div class="container recipes-wrapper">
   <h1 class="recipes-title">Recipes</h1>
-  <ul class="list-group">
-    {% for recipe in recipes %}
-      <li class="list-group-item">
-        <a class="recipe-title" href="recipes/{{recipe._id}}">{{recipe.title}}</a>
-        <p class="ingredients">
-          {{recipe.ingredients}}
-        </p>
-        <p>
-          {{recipe.directions}}
-        </p>
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="well">
+        <h3>Filter:</h3>
+        <form>
+          <label>Ingredients</label>
+          <select class="form-control">
+            <option>Chicken</option>
+            <option>Pork</option>
+            <option>Beef</option>
+            <option>Seafood</option>
+            <option>Vegetables</option>
+          </select>
+        </form>
+        <form>
+          <label>Meal</label>
+          <select class="form-control">
+            <option>Breakfast</option>
+            <option>Lunch</option>
+            <option>Dinner</option>
+          </select>
+        </form>
+        <form>
+          <label> Type of Course</label>
+          <select class="form-control">
+            <option>Soup</option>
+            <option>Salads</option>
+            <option>Fish</option>
+            <option>Main Course</option>
+            <option>Dessert</option>
+          </select>
+        </form>
+        <input type="submit" class="btn btn-primary btn-block" />
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <div class="row">
+        {% for recipe in recipes %}
+        <div class="col-lg-4">
+            <div class="thumbnail recipe-container">
+              <img src="../static/img/home-min.jpg" class="img-responsive  recipe-img" alt="Responsive image">
+              <a class="recipe-title" href="recipes/{{recipe._id}}">{{recipe.title}}</a>
+              <p class="cal descript-text">Calories: {{recipe.nutrition.calories}}</p>
+              <p class="time descript-text">Time: {{recipe.time.total}} h</p>
+            </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li>
+        <a href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
       </li>
-    {% endfor %}
-  </ul>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li>
+        <a href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </div>
+
+
 {% endblock %}

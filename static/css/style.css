@@ -38,10 +38,11 @@
 .home .img-wrapper .quote{
   font-family: 'Fredoka One', cursive;
   color: white;
+  width: 100%;
   margin: 0;
   position: absolute;
   top: 43%;
-  left: 40%;
+  left: 55%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
 
@@ -50,8 +51,8 @@
   font-size: 170px;
 }
 .home .img-wrapper .chef{
-  float: right;
-  font-size: 72px;
+  /*float: right;*/
+  font-size: 60px;
   color: #4ca2cd;
   font-style: italic;
   text-shadow: 9px 4px 15px rgba(255, 255, 255, 0.8);
@@ -93,12 +94,128 @@
 .container .recipes-title{
   color: white;
   text-align: center;
+}
+.recipes-wrapper{
+  /*position: relative;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container .row .col-lg-9 .row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /*align-items: center;*/
+  /*justify-content: flex-start;*/
+}
+.recipes-wrapper .row .col-lg-9 .row .col-lg-4 .recipe-container{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+
+.recipes-wrapper .row .col-lg-9 .row .col-lg-4 .recipe-container .recipe-title{
+  font-size: 18px;
+  position: absolute;
+  top: 10px;
+  width: 90%;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px black;
+}
+.recipes-wrapper .row .col-lg-9 .row .col-lg-4 .recipe-container .descript-text{
+  font-size: 16px;
+  position: absolute;
+  color: white;
+  text-shadow: 1px 1px black;
+}
+.recipes-wrapper .row .col-lg-9 .row .col-lg-4 .recipe-container .cal{
+  left: 0;
+  bottom: 0;
+  margin-left: 10px;
+}
+.recipes-wrapper .row .col-lg-9 .row .col-lg-4 .recipe-container .time{
+  right: 0;
+  bottom: 0;
+  margin-right: 10px;
+}
+
+/*Recipe*/
+/*.container .recipe-title{
   padding-top: 65px;
-  padding-bottom: 25px;
+  padding-bottom: 15px;
 }
-.container .list-group .list-group-item .recipe-title{
-  font-size: 24px;
+.container .recipe-wrapper .reviews-chef{
+  padding: 10px 0 10px 0;
 }
-.container .list-group .list-group-item .ingredients{
-  padding: 10px 0 0 0;
+.container .recipe-wrapper .reviews-chef .reviews{
+  padding: 0 0 5px 0;
 }
+.container .recipe-wrapper .img-additional{
+  display: flex;
+  flex-direction: row;
+}
+.container .recipe-wrapper .img-additional .recipe-img{
+  width: 45%;
+  padding: 15px 0 15px 0;
+}
+.container .recipe-wrapper .img-additional .extra{
+  display: flex;
+  flex-direction: row;
+  padding: 0 0 0 40px;
+}
+.container .recipe-wrapper .img-additional .extra .basic-info{
+  padding: 0 10px;
+}
+.container .recipe-wrapper .img-additional .extra .additional{
+  padding: 0 10px;
+}
+.container .recipe-wrapper .img-additional .extra .nutrition{
+  padding: 0 10px;
+}*/
+
+/*Dashboard*/
+.container h1{
+  padding-top: 65px;
+  padding-bottom: 15px;
+}
+
+/*Add Recipe */
+/*.container .recipe-title{
+  color: lightgrey;
+}
+.container .review-chef{
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.container .review-chef .review{
+
+}
+.container .review-chef .chef{
+
+}*/
+/*.container .time{
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.container .serving-level{
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.container .nutrition{
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.container .nutrition .nutri{
+  padding-bottom: 15px;
+}*/

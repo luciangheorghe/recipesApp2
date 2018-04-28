@@ -158,14 +158,14 @@ class RecipeForm(Form):
     servings = IntegerField('Servings')
 
     calories = IntegerField('Calories')
-    total_fat = DecimalField('Total Fat')
-    saturated_fat = DecimalField('Saturated Fat')
-    cholesterol = DecimalField('Cholesterol')
-    sodium = DecimalField('Sodium')
-    carbohydrats = DecimalField('Carbohydrats')
-    diestary_fiber = DecimalField('Diestary Fiber')
-    protein = DecimalField('Protein')
-    sugar = DecimalField('Sugar')
+    total_fat = IntegerField('Total Fat')
+    saturated_fat = IntegerField('Saturated Fat')
+    cholesterol = IntegerField('Cholesterol')
+    sodium = IntegerField('Sodium')
+    carbohydrats = IntegerField('Carbohydrats')
+    diestary_fiber = IntegerField('Diestary Fiber')
+    protein = IntegerField('Protein')
+    sugar = IntegerField('Sugar')
 
     ingredients = StringField('Ingredients', [validators.Length(min=4, max=1000)])
 

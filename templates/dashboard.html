@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+<div class="container">
   <h1>Dashboard <small>Welcome {{session.username}}</small></h1>
   <a class="btn btn-success" href="/add_recipe">Add Recipe</a>
   <hr />
@@ -29,4 +30,6 @@
         </tr>
       {% endfor %}
     </table>
+</div>
+
 {% endblock %}

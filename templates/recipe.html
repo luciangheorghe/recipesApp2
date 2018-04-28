@@ -2,22 +2,106 @@
 
 {% block body %}
   <div class="container">
-    <h1>{{recipe.title}}</h1>
+    <h1 class="recipe-title">{{recipe.title}}</h1>
     <small>Written by {{session['username']}}</small>
-    <hr />
-    <div>
-      {{recipe.chef}}
+    <div class="recipe-wrapper">
+      <div class="reviews-chef">
+        <div class="reviews">
+          Reviews: {{recipe.reviews}}
+        </div>
+        <div class="chef">
+          Chef: {{recipe.chef}}
+        </div>
+      </div>
+
+      <div class="img-additional">
+        <div class="recipe-img">
+          <img src="../static/img/home-min.jpg" class="img-responsive center-block" alt="Responsive image">
+        </div>
+
+
+        <div class="extra">
+          <div class="basic-info">
+            <div class="time">
+              <h3>Cooking Time</h3>
+              <div>
+                Total: {{recipe.time.total}} h
+              </div>
+              <div>
+                Prep: {{recipe.time.prep}} min
+              </div>
+              <div>
+                Cook: {{recipe.time.cook}} min
+              </div>
+              <div>
+                Inactive: {{recipe.time.inactive}} min
+              </div>
+            </div>
+          </div>
+          <div class="additional">
+            <h3>Additional</h3>
+            <div class="servings">
+              Yield: {{recipe.servings}} servings
+            </div>
+            <div class="level">
+              Level: {{recipe.level}}
+            </div>
+          </div>
+          <div class="nutrition">
+            <h3>Nutrition</h3>
+            <div>
+              Calories: {{recipe.nutrition.calories}} calorie
+            </div>
+            <div>
+              Total Fat: {{recipe.nutrition.total_fat}} grams
+            </div>
+            <div>
+              Saturated Fat: {{recipe.nutrition.saturated_fat}} grams
+            </div>
+            <div>
+              Cholesterol: {{recipe.nutrition.cholesterol}} milligrams
+            </div>
+            <div>
+              Sodium: {{recipe.nutrition.sodium}} milligrams
+            </div>
+            <div>
+              Carbohydrats: {{recipe.nutrition.carbohydrats}} grams
+            </div>
+            <div>
+              Diestary Fiber: {{recipe.nutrition.diestary_fiber}} grams
+            </div>
+            <div>
+              Protein: {{recipe.nutrition.protein}} grams
+            </div>
+            <div>
+              Sugar: {{recipe.nutrition.sugar}} grams
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+      <div class="ing-dir-wrapper">
+        <div class="ingredients">
+          <h3>Ingredients</h3>
+          {{recipe.ingredients}}
+        </div>
+
+        <div class="directions">
+          <h3>Directions</h3>
+          {{recipe.directions}}
+        </div>
+      </div>
+
+      <div class="categories">
+        <h3>Categories</h3>
+        {{recipe.categories}}
+      </div>
     </div>
-    <div>
-      {{recipe.level}}
-    </div>
-    <div>
-      {{recipe.ingredients}}
-    </div>
-    <hr />
-    <div>
-      {{recipe.directions}}
-    </div>
+
   </div>
 
 {% endblock %}

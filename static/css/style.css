@@ -9,7 +9,6 @@
 
 /*Home*/
 .home{
-
   height: 100%;
   width: 100%;
   display: flex;
@@ -91,7 +90,9 @@
 }
 
 /*Recipes*/
-.container .recipes-title{
+.recipes-wrapper .recipes-title{
+  padding-top: 70px;
+  padding-bottom: 30px;
   color: white;
   text-align: center;
 }
@@ -101,7 +102,7 @@
   flex-direction: column;
   align-items: center;
 }
-.container .row .col-lg-9 .row{
+.recipes-wrapper .row .col-lg-9 .row{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -114,7 +115,6 @@
   align-items: center;
   justify-content:center;
 }
-
 .recipes-wrapper .row .col-lg-9 .row .col-lg-4 .recipe-container .recipe-title{
   font-size: 18px;
   position: absolute;
@@ -140,82 +140,43 @@
   bottom: 0;
   margin-right: 10px;
 }
+.recipes-wrapper .pages{
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+}
 
 /*Recipe*/
-/*.container .recipe-title{
-  padding-top: 65px;
-  padding-bottom: 15px;
+.content-wrapper{
+  padding-top: 50px;
 }
-.container .recipe-wrapper .reviews-chef{
-  padding: 10px 0 10px 0;
+.content-wrapper .container .written{
+  padding-bottom: 20px;
 }
-.container .recipe-wrapper .reviews-chef .reviews{
-  padding: 0 0 5px 0;
+.content-wrapper .container .reviews-chef{
+  padding-bottom: 20px;
 }
-.container .recipe-wrapper .img-additional{
-  display: flex;
-  flex-direction: row;
+.content-wrapper .container .cook-addit{
+  padding: 0 0 0 20px;
 }
-.container .recipe-wrapper .img-additional .recipe-img{
-  width: 45%;
-  padding: 15px 0 15px 0;
+
+/*Register*/
+.register{
+  width: 30%;
 }
-.container .recipe-wrapper .img-additional .extra{
-  display: flex;
-  flex-direction: row;
-  padding: 0 0 0 40px;
+.register .register-title{
+  text-align: center;
 }
-.container .recipe-wrapper .img-additional .extra .basic-info{
-  padding: 0 10px;
+
+/*Login*/
+.login{
+  width: 30%;
 }
-.container .recipe-wrapper .img-additional .extra .additional{
-  padding: 0 10px;
+.login .login-title{
+  text-align: center;
 }
-.container .recipe-wrapper .img-additional .extra .nutrition{
-  padding: 0 10px;
-}*/
 
 /*Dashboard*/
-.container h1{
-  padding-top: 65px;
-  padding-bottom: 15px;
+.dashboard .welcome{
+  color: white;
 }
-
-/*Add Recipe */
-/*.container .recipe-title{
-  color: lightgrey;
-}
-.container .review-chef{
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-.container .review-chef .review{
-
-}
-.container .review-chef .chef{
-
-}*/
-/*.container .time{
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.container .serving-level{
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-.container .nutrition{
-
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.container .nutrition .nutri{
-  padding-bottom: 15px;
-}*/

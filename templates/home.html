@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+
   <div class="home">
     <div class="img-wrapper">
       <img src="../static/img/home-min.jpg" class="img-responsive center-block" alt="Responsive image">
@@ -13,7 +14,7 @@
       <div class="square">
         <h1 class="app-title">Welcome to EasyChef</h1>
         <p class="lead">
-          You don't have to cook fancy or complicated masterpieces - just good food from fresh ingredients. 
+          You don't have to cook fancy or complicated masterpieces - just good food from fresh ingredients.
         </p>
         <div class="btns-log">
           {% if session.logged_in == NULL %}

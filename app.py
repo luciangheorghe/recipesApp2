@@ -26,18 +26,18 @@ def about():
     return render_template('about.html')
 
 # Recipes
-@app.route('/recipes')
+@app.route('/recipes', methods=['GET', 'POST'])
 def recipes():
     recipes = mongo.db.recipes
 
-    find_recipes = mongo.db.recipes.find()
+    find_recipes = mongo.db.recipes.find({'level': 'Easy'})
 
     if find_recipes > 0:
         return render_template('recipes.html', recipes=find_recipes)
     else:
         msg = 'No Recipes Found'
         return render_template('recipes.html', msg=msg)
-    # return render_template('recipes.html')
+
 
 
 # Single Recipe

@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+<div class="content-wrapper">
   <div class="container">
     <h1 class="recipe-title">Add Recipe</h1>
     {% from "includes/_formhelpers.html" import render_field %}
@@ -90,5 +91,7 @@
       </p>
     </form>
   </div>
+</div>
+
 
 {% endblock %}

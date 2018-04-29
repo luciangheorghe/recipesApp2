@@ -1,28 +1,28 @@
-{% extends 'layout.html' %}
-
-{% block body %}
+{% extends 'layout.html' %} {% block body %}
+<div class="content-wrapper">
   <div class="container">
     <h1 class="recipe-title">{{recipe.title}}</h1>
-    <small>Written by {{session['username']}}</small>
-    <div class="recipe-wrapper">
-      <div class="reviews-chef">
-        <div class="reviews">
-          Reviews: {{recipe.reviews}}
+    <small class="written">Written by {{session['username']}}</small>
+    <div class="row single-recipe-wrapper">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-12 reviews-chef">
+            <div class="reviews">
+              Reviews: {{recipe.reviews}}
+            </div>
+            <div class="chef">
+              Chef: {{recipe.chef}}
+            </div>
+          </div>
         </div>
-        <div class="chef">
-          Chef: {{recipe.chef}}
-        </div>
-      </div>
-
-      <div class="img-additional">
-        <div class="recipe-img">
-          <img src="../static/img/home-min.jpg" class="img-responsive center-block" alt="Responsive image">
-        </div>
-
-
-        <div class="extra">
-          <div class="basic-info">
-            <div class="time">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="thumbnail">
+              <img src="../static/img/home-min.jpg" class="img-responsive center-block" alt="Responsive image">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="row cook-addit">
               <h3>Cooking Time</h3>
               <div>
                 Total: {{recipe.time.total}} h
@@ -37,17 +37,17 @@
                 Inactive: {{recipe.time.inactive}} min
               </div>
             </div>
-          </div>
-          <div class="additional">
-            <h3>Additional</h3>
-            <div class="servings">
-              Yield: {{recipe.servings}} servings
+            <div class="row cook-addit">
+              <h3>Additional</h3>
+              <div class="servings">
+                Yield: {{recipe.servings}} servings
+              </div>
+              <div class="level">
+                Level: {{recipe.level}}
+              </div>
             </div>
-            <div class="level">
-              Level: {{recipe.level}}
-            </div>
           </div>
-          <div class="nutrition">
+          <div class="col-lg-3">
             <h3>Nutrition</h3>
             <div>
               Calories: {{recipe.nutrition.calories}} calorie
@@ -78,30 +78,27 @@
             </div>
           </div>
         </div>
-
-      </div>
-
-
-
-
-      <div class="ing-dir-wrapper">
-        <div class="ingredients">
-          <h3>Ingredients</h3>
-          {{recipe.ingredients}}
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="ingredients">
+              <h3>Ingredients</h3> {{recipe.ingredients}}
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="directions">
+              <h3>Directions</h3> {{recipe.directions}}
+            </div>
+          </div>
         </div>
-
-        <div class="directions">
-          <h3>Directions</h3>
-          {{recipe.directions}}
+        <div class="row">
+          <div class="col-lg-12">
+            <h3>Categories</h3> {{recipe.categories}}
+          </div>
         </div>
       </div>
 
-      <div class="categories">
-        <h3>Categories</h3>
-        {{recipe.categories}}
-      </div>
     </div>
-
   </div>
+</div>
 
 {% endblock %}

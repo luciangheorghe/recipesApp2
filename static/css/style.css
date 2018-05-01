@@ -28,7 +28,7 @@
   color: white;
   margin: 0;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
@@ -38,8 +38,8 @@
   justify-content: center;
 }
 .container-fluid .welcome-title .quote .welcome{
-  color: blue;
-  font-size: 100px;
+  color: #427F52;
+  font-size: 120px;
   text-shadow: 9px 4px 15px rgba(0, 0, 0, 0.4);
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   border-right: .15em solid white; /* The typwriter cursor */
@@ -51,6 +51,8 @@
     blink-caret .75s step-end infinite;
 }
 .container-fluid .welcome-title .quote .qoute2{
+  margin-top: 30px;
+  margin-left: 254px;
   font-size: 45px;
   text-shadow: 9px 4px 15px rgba(0, 0, 0, 0.4);
 }
@@ -156,12 +158,14 @@
 }
 
 /*Register*/
-.register{
-  width: 30%;
+.container-fluid .intro3 img{
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-.register .register-title{
-  text-align: center;
-}
+
 
 /*Login*/
 .panel{

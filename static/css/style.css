@@ -1,94 +1,59 @@
-.layout-container{
-  background: #67B26F;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #4ca2cd, #67B26F);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #4ca2cd, #67B26F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.container-fluid{
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
   width: 100%;
   height: 100%;
 }
+
 
 
 /*Home*/
-.home{
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.home .img-wrapper{
-  background: yellow;
-  width: 60%;
-  position: relative;
-}
-.home .img-wrapper img{
+.container-fluid #intro img{
+  position: absolute;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+
 }
-.home .img-wrapper .filter{
-  background-color: rgba(103, 178, 111, 0.4);
-  position: absolute;
-  top: 0;
-  left: 0;
+.container-fluid .welcome-title{
+  position: relative;
   width: 100%;
   height: 100%;
+
 }
-.home .img-wrapper .quote{
+.container-fluid .welcome-title .quote{
   font-family: 'Fredoka One', cursive;
   color: white;
-  width: 100%;
   margin: 0;
   position: absolute;
-  top: 43%;
-  left: 55%;
+  top: 50%;
+  left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-
-}
-.home .img-wrapper .welcome{
-  font-size: 170px;
-}
-.home .img-wrapper .chef{
-  /*float: right;*/
-  font-size: 60px;
-  color: #4ca2cd;
-  font-style: italic;
-  text-shadow: 9px 4px 15px rgba(255, 255, 255, 0.8);
-
-}
-.home .login{
-  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.home .login .square{
-  background-color: rgba(225, 225, 225, 0.4);
-  border-radius: 20px;
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.container-fluid .welcome-title .quote .welcome{
+  color: blue;
+  font-size: 100px;
+  text-shadow: 9px 4px 15px rgba(0, 0, 0, 0.4);
 }
-.home .login .square .app-title{
-  padding: 20px 0 40px 0;
+.container-fluid .welcome-title .quote .qoute2{
+  font-size: 45px;
+  text-shadow: 9px 4px 15px rgba(0, 0, 0, 0.4);
 }
-.home .login .square .lead{
-  padding: 0 60px 30px 60px;
-  text-align: justify;
-  /*color: #707c80;*/
+.container-fluid .btns-login{
+  margin: 0;
+  position: absolute;
+  top: 67%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
-.home .login .square .btns-log{
-  padding: 0 0 60px 0;
-}
-.home .login .square .btns-log .btn{
-  margin: 0 10px;
-  width: 110px;
-}
-
 /*Recipes*/
 .recipes-wrapper .recipes-title{
   padding-top: 70px;
@@ -116,7 +81,7 @@
   justify-content:center;
 }
 .recipes-wrapper .row .col-lg-9 .row .col-lg-4 .recipe-container .gradient-img{
-  background-color: rgba(103, 178, 111, 0.4);
+  background-color: rgba(255, 255, 111, 0.4);
   position: absolute;
   top: 0;
   left: 0;
@@ -248,4 +213,18 @@
 /*Dashboard*/
 .dashboard .welcome{
   color: white;
+}
+/*About*/
+.content-wrapper{
+  display: block;
+  left: 0;
+  /*width: 100%;*/
+  height: 100%;
+}
+.content-wrapper #intro2{
+  position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

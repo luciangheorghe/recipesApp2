@@ -1,31 +1,22 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-
-  <div class="home">
-    <div class="img-wrapper">
-      <img src="../static/img/home-min.jpg" class="img-responsive center-block" alt="Responsive image">
-      <div class="filter"></div>
+  <div class="container-fluid">
+    <div id="intro" class="view">
+      <div class="full-bg-img">
+        <img src="../static/img/home2-min.jpeg" class="img-responsive center-block" alt="Responsive image">
+      </div>
+    </div>
+    <div class="welcome-title">
       <p class="quote">
-        <span class="welcome">Welcome</span> <br /><span class="chef">"Health requires healthy food" </span>
+        <span class="welcome">Welcome</span> <br /><span class="qoute2">"Health requires healthy food" </span>
       </p>
     </div>
-    <div class="login">
-      <div class="square">
-        <h1 class="app-title">Welcome to EasyChef</h1>
-        <p class="lead">
-          You don't have to cook fancy or complicated masterpieces - just good food from fresh ingredients.
-        </p>
-        <div class="btns-log">
-          {% if session.logged_in == NULL %}
-            <a href="/register" class="btn btn-primary btn-lg">Register</a>
-            <a href="/login" class="btn btn-success btn-lg">Login</a>
-          {% endif %}
-        </div>
-      </div>
-
-
+    <div class="btns-login">
+      {% if session.logged_in == NULL %}
+        <a href="/register" class="btn btn-primary btn-lg">Register</a>
+        <a href="/login" class="btn btn-success btn-lg">Login</a>
+      {% endif %}
     </div>
   </div>
-
 {% endblock %}

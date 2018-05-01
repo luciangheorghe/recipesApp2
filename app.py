@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
+from flask import Flask, render_template, flash, redirect, url_for, session, request, logging, jsonify
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from wtforms import Form, StringField, IntegerField, DecimalField, TextAreaField, PasswordField, validators
@@ -41,11 +41,13 @@ def recipes():
 
 
 # Single Recipe
-@app.route('/recipes/<recipe_id>')
+@app.route('/recipes/<recipe_id>', methods=['GET', 'POST'])
 def recipe(recipe_id):
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
 
     return render_template('recipe.html', recipe=the_recipe)
+
+
 
 #Register Form Class
 class RegisterForm(Form):

@@ -9,3 +9,4 @@ wheel==0.24.0
 WTForms==2.1
 Flask-PyMongo==0.5.1
 Flask-WTF==0.14.2
+passlib==1.7.1

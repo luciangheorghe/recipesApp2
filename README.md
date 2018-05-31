@@ -1,5 +1,7 @@
 # EasyChef - Project for Stream 2 - Code Institute
 
+[![Build Status](https://travis-ci.org/luciangheorghe/recipesApp2.svg?branch=master)](https://travis-ci.org/luciangheorghe/recipesApp2)
+
 Created in Atom IDE using:
 - Flask framework;
 - MongoDB database (data taken from foodnetwork.com);

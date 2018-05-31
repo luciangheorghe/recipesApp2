@@ -30,7 +30,7 @@ def about():
 def recipes():
     recipes = mongo.db.recipes
 
-    find_recipes = mongo.db.recipes.find({'level': 'Easy'})
+    find_recipes = mongo.db.recipes.find()
 
     if find_recipes > 0:
         return render_template('recipes.html', recipes=find_recipes)
@@ -39,9 +39,29 @@ def recipes():
         return render_template('recipes.html', msg=msg)
 
 
+        ing = request.form['ingred']
+        meal = request.form['meal']
+        course = request.form['course']
+        difficulty = request.form['difficulty']
+
+        tag_list = [ing, meal, course, difficulty]
+
+def trim_list(x):
+    new_list = []
+    for i in x:
+        if i is None:
+            pass
+        else:
+            new_list.append(i)
+    return new_list
+
+    tag_list = trim_list(tag_list)
+
+    return render_template('recipes.html', tag_list = trim_list(tag_list))
+
 
 # Single Recipe
-@app.route('/recipes/<recipe_id>', methods=['GET', 'POST'])
+@app.route('/recipes/<recipe_id>')
 def recipe(recipe_id):
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
 

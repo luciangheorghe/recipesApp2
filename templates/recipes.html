@@ -7,9 +7,9 @@
     <div class="col-lg-3">
       <div class="well">
         <h3>Filter:</h3>
-        <form>
+        <form method="POST" action="">
           <label>Ingredients</label>
-          <select class="form-control">
+          <select name="ingred" class="form-control">
             <option>Chicken</option>
             <option>Pork</option>
             <option>Beef</option>
@@ -17,17 +17,17 @@
             <option>Vegetables</option>
           </select>
         </form>
-        <form>
+        <form method="POST" action="">
           <label>Meal</label>
-          <select class="form-control">
+          <select name="meal" class="form-control">
             <option>Breakfast</option>
             <option>Lunch</option>
             <option>Dinner</option>
           </select>
         </form>
-        <form>
+        <form method="POST" action="">
           <label> Type of Course</label>
-          <select class="form-control">
+          <select name="course" class="form-control">
             <option>Soup</option>
             <option>Salads</option>
             <option>Fish</option>
@@ -35,15 +35,15 @@
             <option>Dessert</option>
           </select>
         </form>
-        <form>
+        <form method="POST" action="">
           <label> Difficulty</label>
-          <select class="form-control">
+          <select name="difficulty" class="form-control">
             <option>Easy</option>
             <option>Medium</option>
             <option>Hard</option>
           </select>
         </form>
-        <input type="submit" class="btn btn-primary btn-block" />
+        <input type="submit" value="Submit" class="btn btn-primary btn-block" />
       </div>
     </div>
     <div class="col-lg-9 span6">

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging, jsonify
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from wtforms import Form, StringField, IntegerField, DecimalField, TextAreaField, PasswordField, validators
+from wtforms import Form, StringField, SelectField, IntegerField, DecimalField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
 
@@ -25,12 +25,19 @@ def home():
 def about():
     return render_template('about.html')
 
+
+
 # Recipes
 @app.route('/recipes', methods=['GET', 'POST'])
 def recipes():
+
     recipes = mongo.db.recipes
 
-    find_recipes = mongo.db.recipes.find()
+    ingredient = request.form.get('ingred')
+    print(ingredient)
+
+    find_recipes = list(mongo.db.recipes.find({"time.total": ingredient}))
+    print(find_recipes)
 
     if find_recipes > 0:
         return render_template('recipes.html', recipes=find_recipes)
@@ -39,25 +46,6 @@ def recipes():
         return render_template('recipes.html', msg=msg)
 
 
-        ing = request.form['ingred']
-        meal = request.form['meal']
-        course = request.form['course']
-        difficulty = request.form['difficulty']
-
-        tag_list = [ing, meal, course, difficulty]
-
-def trim_list(x):
-    new_list = []
-    for i in x:
-        if i is None:
-            pass
-        else:
-            new_list.append(i)
-    return new_list
-
-    tag_list = trim_list(tag_list)
-
-    return render_template('recipes.html', tag_list = trim_list(tag_list))
 
 
 # Single Recipe

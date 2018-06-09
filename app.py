@@ -104,7 +104,9 @@ def login():
         users = mongo.db.users
         login_user = users.find_one({'username': request.form['username']})
 
-        if login_user > 0:
+        logged_in_user = int(login_user)
+
+        if logged_in_user > 0:
             password = sha256_crypt.encrypt(str(form.password.data))
 
             if sha256_crypt.verify(password_candidate, password):

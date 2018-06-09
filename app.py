@@ -36,10 +36,12 @@ def recipes():
     ingredient = request.form.get('ingred')
     print(ingredient)
 
-    find_recipes = mongo.db.recipes.find({"time.total": ingredient})
+    find_recipes = list(mongo.db.recipes.find({"time.total": ingredient}))
     print(find_recipes)
 
-    if int(find_recipes) > 0:
+    found_recipes = ','.join(map(str, find_recipes))
+
+    if found_recipes > 0:
         return render_template('recipes.html', recipes=find_recipes)
     else:
         msg = 'No Recipes Found'

@@ -36,7 +36,7 @@ def recipes():
     ingredient = request.form.get('ingred')
     print(ingredient)
 
-    find_recipes = list(mongo.db.recipes.find({"time.total": ingredient}))
+    find_recipes = int(list(mongo.db.recipes.find({"time.total": ingredient})))
     print(find_recipes)
 
     if find_recipes > 0:

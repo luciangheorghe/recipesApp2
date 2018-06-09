@@ -151,9 +151,11 @@ def dashboard():
 
     recipes = mongo.db.recipes
 
-    find_recipes = mongo.db.recipes.find()
+    find_recipes = list(mongo.db.recipes.find())
 
-    if find_recipes > 0:
+    all_recipes = len(find_recipes)
+
+    if all_recipes > 0:
         return render_template('dashboard.html', recipes=find_recipes)
     else:
         msg = 'No Recipes Found'

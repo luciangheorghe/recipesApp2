@@ -1,4 +1,3 @@
-# DEBUG = True
 import os
 
 

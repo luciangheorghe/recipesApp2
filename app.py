@@ -39,9 +39,7 @@ def recipes():
     find_recipes = list(mongo.db.recipes.find({"time.total": ingredient}))
     print(find_recipes)
 
-    found_recipes = ','.join(map(str, find_recipes))
-
-    if found_recipes > 0:
+    if find_recipes > 0:
         return render_template('recipes.html', recipes=find_recipes)
     else:
         msg = 'No Recipes Found'

@@ -4,12 +4,12 @@ from bson.objectid import ObjectId
 from wtforms import Form, StringField, SelectField, IntegerField, DecimalField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
+from config import Config
 
 app = Flask(__name__)
 
 # Config MongoDB
-app.config['MONGO_DBNAME'] = 'recipesapp89'
-app.config['MONGO_URI'] = 'mongodb://lucas89:David2000@ds247439.mlab.com:47439/recipesapp89'
+app.config.from_object(Config)
 
 
 # Init MongoDB
@@ -352,5 +352,5 @@ def delete_recipe(recipe_id):
     return redirect(url_for('dashboard'))
 
 if __name__ == '__main__':
-    app.secret_key='secret123'
+    app.config.from_object(Config)
     app.run(debug=True)

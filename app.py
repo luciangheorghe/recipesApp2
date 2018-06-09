@@ -28,7 +28,7 @@ def about():
 
 
 # Recipes
-@app.route('/recipes', methods=['POST'])
+@app.route('/recipes', methods=['GET', 'POST'])
 def recipes():
 
     recipes = mongo.db.recipes

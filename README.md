@@ -6,6 +6,7 @@ Created in Atom IDE using:
 - Flask framework;
 - MongoDB database (data taken from foodnetwork.com);
 - Bootstrap - website is mobile responsive;
+- ChartJS - for chart representation
 - jQuery;
 - WTForms;
 - Passlib for password encryption;

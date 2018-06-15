@@ -89,9 +89,7 @@
               <h3>Directions</h3> {{recipe.directions}}
             </div>
           </div>
-          <!-- <div class="col-lg-5">
-            <canvas id="myChart" width="600" height="400"></canvas>
-          </div> -->
+
         </div>
         <div class="row">
           <div class="col-lg-12">
@@ -99,11 +97,35 @@
           </div>
         </div>
       </div>
-
+    </div>
+    <div class="row center">
+      <canvas id="chart" width="600" height="400"></canvas>
     </div>
   </div>
-
-
 </div>
+
+<script>
+     var pieData = [
+              {% for item,label,colors in set %}
+                  {
+                      value: {{item}},
+                      label: "{{label}}",
+                      color : "{{colors}}"
+                  },
+                  {% endfor %}
+
+
+           ];
+
+     // get bar chart canvas
+     var mychart = document.getElementById("chart").getContext("2d");
+
+     steps = 10
+     max = 10
+     // draw pie chart
+     new Chart(document.getElementById("chart").getContext("2d")).Pie(pieData);
+
+</script>
+
 
 {% endblock %}

@@ -88,7 +88,6 @@
   text-align: center;
 }
 .recipes-wrapper{
-  /*position: relative;*/
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,8 +96,6 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /*align-items: center;*/
-  /*justify-content: flex-start;*/
 }
 .recipes-wrapper .row .col-lg-9 .row .col-lg-4 .recipe-container{
   position: relative;
@@ -288,4 +285,9 @@
 }
 .well {
    background-color: rgba(245, 245, 245, 0.4);
+}
+
+#chart{
+  margin: 50px 0 0 0;
+  
 }

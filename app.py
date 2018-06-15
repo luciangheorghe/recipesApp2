@@ -5,11 +5,14 @@ from wtforms import Form, StringField, SelectField, IntegerField, DecimalField, 
 from passlib.hash import sha256_crypt
 from functools import wraps
 from config import Config
+import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
 # Config MongoDB
-app.config.from_object(Config)
+# app.config.from_object(Config)
+app.config['MONGO_DBNAME'] = 'recipesapp89'
+app.config['MONGO_URI'] = 'mongodb://lucas89:David2000@ds247439.mlab.com:47439/recipesapp89'
 
 
 # Init MongoDB
@@ -33,20 +36,23 @@ def recipes():
 
     recipes = mongo.db.recipes
 
-    ingredient = request.form.get('ingred')
-    print(ingredient)
+    if request.method == 'POST':
 
-    find_recipes = list(mongo.db.recipes.find({"time.total": ingredient}))
-    print(find_recipes)
+        ingredient = request.form.get('ingred')
 
-    found_recipes = len(find_recipes)
-    print(found_recipes)
+        find_recipes = list(mongo.db.recipes.find({"time.total": ingredient}))
 
-    if found_recipes > 0:
-        return render_template('recipes.html', recipes=find_recipes)
+        found_recipes = len(find_recipes)
+
+        if found_recipes > 0:
+            return render_template('recipes.html', recipes=find_recipes)
+        else:
+            msg = 'No Recipes Found'
+            return render_template('recipes.html', msg=msg)
     else:
-        msg = 'No Recipes Found'
-        return render_template('recipes.html', msg=msg)
+        recipes = list(mongo.db.recipes.find())
+
+    return render_template('recipes.html', recipes=recipes)
 
 
 
@@ -54,9 +60,25 @@ def recipes():
 # Single Recipe
 @app.route('/recipes/<recipe_id>')
 def recipe(recipe_id):
+
+
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
 
-    return render_template('recipe.html', recipe=the_recipe)
+    calories = the_recipe['nutrition']['calories']
+    carbohydrats = the_recipe['nutrition']['carbohydrats']
+    protein = the_recipe['nutrition']['protein']
+    sugar = the_recipe['nutrition']['sugar']
+    total_fat = the_recipe['nutrition']['total_fat']
+    cholesterol = the_recipe['nutrition']['cholesterol']
+
+    labels = ["calories", "carbohydrats", "protein", "sugar", "total fat", "cholesterol"]
+    values = [calories, carbohydrats, protein, sugar, total_fat, cholesterol]
+    colors = ["#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA","#ABCDEF", "#DDDDDD",]
+    print(values)
+
+
+    return render_template('recipe.html', recipe=the_recipe, set=zip(values, labels, colors))
+
 
 
 
@@ -354,5 +376,6 @@ def delete_recipe(recipe_id):
     return redirect(url_for('dashboard'))
 
 if __name__ == '__main__':
-    app.config.from_object(Config)
+    app.secret_key='secret123'
+    # app.config.from_object(Config)
     app.run(debug=True)

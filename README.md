@@ -20,8 +20,10 @@ After the user is logged in one can add, update or delete the recipes.
 
 The Dashboard is the place where user can see a table with all the recipes one added.
 
-If the user is logged out he can also see the recipies and sort them after his preferences.
+If the user is logged out he can also see the recipes and sort them after his preferences.
 
-After user choose his prefered recipe he can see all the details about that.
+After user choose his preferred recipe he can see all the details about that.
 
-In the detiled view of the recipe you can find all the instructions for cooking.
+In the detailed view of the recipe you can find all the instructions for cooking.
+
+Note: Photos were taken from unspalsh.com. They are free to use as long the are not for commercial use.

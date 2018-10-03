@@ -1,3 +1,6 @@
+// This code snippet was taken from StackOverflow from Themes.guide
+// Here is the link to related snippet: https://stackoverflow.com/questions/17390179/using-bootstrap-to-paginate-a-set-number-of-p-elements-on-a-webpage/17552091#17552091
+
 var listElement = $('#pageRecipes');
 var perPage = 9;
 var numItems = listElement.children().length;

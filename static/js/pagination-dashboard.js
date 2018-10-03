@@ -1,3 +1,6 @@
+// This code snippet was taken from StackOverflow from how to use pagination
+// Here is the link to related snippet: https://stackoverflow.com/questions/19605078/how-to-use-pagination-on-html-tables
+
 $(document).ready(function(){
     $('#pagDashboard').after('<div id="nav"></div>');
     var rowsShown = 8;
